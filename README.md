@@ -128,13 +128,11 @@ Elle montre que la fréquence d’un type d’accident ne dépend pas uniquement
 
 Enfin, cette observation reste cohérente avec une tendance globale.  
 Le déraillement demeure le type d’accident dominant, indépendamment des conditions de visibilité, ce qui confirme son caractère structurel.
-
-
 ---
+
 
 ## Partie 2 — Pipeline Machine Learning (Dataiku)
 
-### Ce que j'ai réalisé
 
 Là où le dashboard Power BI répond à la question *"que s'est-il passé ?"*, le pipeline Dataiku répond à *"que pourrait-il se passer ?"*. J'ai construit un flow de bout en bout allant de la donnée brute à deux modèles de classification entraînés et évaluables.
 
@@ -167,6 +165,29 @@ Un second script Python construit les features les plus discriminantes pour les 
 - Extraction de variables temporelles enrichies depuis `Report Year`.
 - Construction d'un indicateur de densité d'accidents par État et par période.
 - Recodage de la variable cible `Accident Type` en classes consolidées pour réduire le déséquilibre de classes (le déraillement représentant 55% des cas, un traitement spécifique était nécessaire).
+#### 4. Modèles utilisés
+
+Afin de prédire le type d’accident, j’ai comparé plusieurs modèles de classification multiclasse.
+
+Les deux principaux modèles évalués sont :
+- Régression Logistique
+- Arbre de décision
+
+La capture ci-dessous présente un tableau comparatif des performances des modèles.
+
+<img width="1812" height="181" alt="image" src="https://github.com/user-attachments/assets/d0fdb7d8-e5fb-4147-a308-3614467c39d9" />
+
+On observe que la Régression Logistique surpasse l’Arbre de décision sur la majorité des métriques.
+
+- Accuracy : 0.947 contre 0.867  
+- F1-score : 0.642 contre 0.391  
+- ROC AUC : 0.926 contre 0.897  
+
+Ces écarts montrent que la Régression Logistique est plus performante et généralise mieux sur les données.
+
+De plus, le temps d’entraînement est plus élevé, ce qui reflète une modélisation plus complexe mais aussi plus robuste.
+
+Ce modèle a donc été retenu pour la suite de l’analyse.
 
 #### 4. Modèles de prédiction (multiclass)
 
