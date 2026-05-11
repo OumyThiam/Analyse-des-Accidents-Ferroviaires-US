@@ -237,11 +237,23 @@ Ces résultats permettent de mieux comprendre les facteurs qui influencent les a
 
 <img width="1472" height="452" alt="Capture d’écran 2026-05-07 121711" src="https://github.com/user-attachments/assets/d7cb8e50-0c90-4224-b6d8-6e40713f96f4" />
 
+Une optimisation des hyperparamètres a été réalisée afin d’améliorer les performances du modèle, en particulier en ajustant le paramètre de régularisation C de la régression logistique.
 
-Une optimisation des hyperparamètres a été réalisée pour améliorer les performances du modèle.
+Le graphique montre l’évolution du score ROC AUC (courbe bleue) ainsi que le temps d’entraînement (courbe orange) en fonction de différentes valeurs de C.
 
-Le graphique montre que la performance augmente progressivement jusqu’à atteindre un équilibre optimal autour d’une certaine valeur.  
-Au-delà, les gains deviennent limités alors que le temps de calcul augmente.
+Lorsque la valeur de C est faible, le modèle est fortement régularisé.  
+Cela limite sa complexité et entraîne des performances plus faibles, avec un score d’environ 0.83.
+
+À mesure que C augmente, la régularisation diminue.  
+Le modèle devient plus flexible et capture mieux les relations dans les données, ce qui se traduit par une amélioration progressive des performances jusqu’à atteindre un score proche de 0.94.
+
+Un plateau est observé autour de C = 10, où le modèle atteint son meilleur compromis entre biais et variance.  
+Au-delà de cette valeur, les gains en performance deviennent très limités, voire légèrement décroissants, ce qui peut indiquer un début de surapprentissage.
+
+En parallèle, le temps d’entraînement augmente fortement avec C.  
+Les valeurs élevées apportent peu d’amélioration tout en augmentant significativement le coût de calcul.
+
+La valeur C = 10 a donc été retenue comme un bon compromis entre performance et efficacité, permettant d’obtenir un modèle performant sans complexité excessive.
 
 ---
 
